@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sell Your Furniture - FurnitureMart</title>
+  <link rel="stylesheet" href="sales.css">
+</head>
+<body>
+  <header>
+    <h1>Sell Your Furniture</h1>
+    <a href="index.html" class="back-btn">&#8592; Back to Home</a>
+  </header>
+  
+  <!-- Sale Form Section -->
+  <section class="sale-form-section">
+    <h2>Post an Item for Sale</h2>
+    <form id="sale-form" enctype="multipart/form-data">
+      <input type="text" id="item-name" placeholder="Item Name" required>
+      <input type="number" id="item-price" placeholder="Price" required>
+      <input type="file" id="item-image" accept="image/*" required>
+      <img id="image-preview" src="" alt="Image Preview" style="display:none; width: 150px; margin-top: 10px;">
+      <textarea id="item-description" placeholder="Item Description" required></textarea>
+      <button type="submit">Post Item</button>
+    </form>
+  </section>
+  
+  <!-- Sales List Section -->
+  <section class="sales-list-section">
+    <h2>Items for Sale</h2>
+    <div id="sales-list" class="sales-list">
+      <!-- Sale items will load here dynamically -->
+    </div>
+  </section>
+  
+  <script src="sales.js"></script>
+  <footer>
+    <button onclick="window.location.href='index.html'">Back to Home</button>
+  </footer>
+</body>
+</html>

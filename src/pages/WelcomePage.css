@@ -1,0 +1,22 @@
+/* src/pages/WelcomePage.css */
+.welcome-page {
+    background: url('/welcome-bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 3em;
+    text-shadow: 2px 2px 4px #000;
+  }
+  
+  /* Optional: Add different tweaks for admin and user if needed */
+  .admin {
+    /* e.g. different overlay or accent color */
+  }
+  
+  .user {
+    /* e.g. additional visual differences */
+  }
+  

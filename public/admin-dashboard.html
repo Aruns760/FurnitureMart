@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - FurnitureMart</title>
+    <link rel="stylesheet" href="admin-dashboard.css">
+</head>
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+        <button class="logout" onclick="logout()">Logout</button>
+    </header>
+
+    <div class="dashboard-container">
+        <div class="card">
+            <h3>Total Users</h3>
+            <p id="total-users">0</p>
+        </div>
+        <div class="card">
+            <h3>Total Products</h3>
+            <p id="total-products">0</p>
+        </div>
+        <div class="card">
+            <h3>Total Orders</h3>
+            <p id="total-orders">0</p>
+        </div>
+    </div>
+
+    <div class="admin-actions">
+        <a href="manage-users.html" class="action-btn">Manage Users</a>
+        <a href="manage-products.html" class="action-btn">Manage Products</a>
+        <a href="manage-orders.html" class="action-btn">Manage Orders</a>
+    </div>
+
+    <script>
+        // 🟢 Load dashboard stats
+        // Load dashboard stats
+function loadDashboard() {
+    const token = localStorage.getItem('token'); // Get the token
+    console.log('Token from localStorage:', token); // Log token
+
+    if (!token) {
+        alert("Unauthorized! Please log in.");
+        window.location.href = 'admin.html'; // Redirect to login
+        return;
+    }
+
+    fetch('http://localhost:3000/api/dashboard-stats', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}` // Send token
+        }
+    })
+    .then(response => {
+        console.log('Dashboard stats response:', response); // Log response
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch dashboard stats');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Dashboard data:', data); // Log the received data
+        document.getElementById("total-users").innerText = data.users || 0;
+        document.getElementById("total-products").innerText = data.products || 0;
+        document.getElementById("total-orders").innerText = data.orders || 0;
+    })
+    .catch(error => {
+        console.error("Error loading dashboard stats:", error);
+        alert("Session expired or unauthorized. Please log in again.");
+        window.location.href = 'admin.html'; // Redirect to login
+    });
+}
+
+
+        // 🟢 Logout function
+        function logout() {
+            localStorage.removeItem('token'); // Remove token
+            window.location.href = 'admin.html'; // Redirect to login page
+        }
+
+        // 🟢 Load data on page load
+        window.onload = loadDashboard;
+    </script>
+</body>
+</html>

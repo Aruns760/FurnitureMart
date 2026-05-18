@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth System | Login & Register</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="auth-card">
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="login">Login</button>
+                <button class="tab-btn" data-tab="register">Register</button>
+                <button class="tab-btn" data-tab="forgot-password">Forgot Password</button>
+            </div>
+
+            <!-- Login Form -->
+            <div class="tab-content active" id="login-content">
+                <h2>Welcome Back</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <input type="tel" id="loginPhone" placeholder="Phone Number" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="loginPassword" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Login</button>
+                </form>
+                <div class="forgot-password-link">
+                    <a href="#" onclick="switchTab('forgot-password')">Forgot your password?</a>
+                </div>
+                <div id="loginMessage" class="message"></div>
+            </div>
+
+            <!-- Register Form -->
+            <div class="tab-content" id="register-content">
+                <!-- Step 1: Name and Phone Number -->
+                <div class="register-step active" id="step-phone">
+                    <h2>Create Account</h2>
+                    <form id="phoneForm">
+                        <div class="form-group">
+                            <input type="text" id="registerName" placeholder="Full Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="registerPhone" placeholder="Phone Number" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Send OTP</button>
+                    </form>
+                    <div id="phoneMessage" class="message"></div>
+                </div>
+
+                <!-- Step 2: OTP Verification -->
+                <div class="register-step" id="step-otp">
+                    <h2>Verify OTP</h2>
+                    <div class="otp-info">
+                        <p>OTP sent to: <span id="otpPhone"></span></p>
+                        <div class="timer" id="otpTimer">02:00</div>
+                    </div>
+                    <form id="otpForm">
+                        <div class="form-group">
+                            <input type="text" id="otpInput" placeholder="Enter 4-digit OTP" maxlength="4" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Verify OTP</button>
+                    </form>
+                    <div class="resend-otp">
+                        <button id="resendOtpBtn" disabled>Resend OTP</button>
+                    </div>
+                    <div id="otpMessage" class="message"></div>
+                </div>
+
+                <!-- Step 3: Password Setup -->
+                <div class="register-step" id="step-password">
+                    <h2>Set Password</h2>
+                    <form id="passwordForm">
+                        <div class="form-group">
+                            <input type="password" id="registerPassword" placeholder="Create Password" required>
+                            <div class="password-strength">
+                                <div class="strength-bar">
+                                    <div class="strength-fill" id="strengthFill"></div>
+                                </div>
+                                <span class="strength-text" id="strengthText">Weak</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Complete Registration</button>
+                    </form>
+                    <div id="passwordMessage" class="message"></div>
+                </div>
+            </div>
+
+            <!-- Forgot Password Form -->
+            <div class="tab-content" id="forgot-password-content">
+                <!-- Step 1: Enter Phone -->
+                <div class="forgot-step active" id="forgot-step-phone">
+                    <h2>Reset Password</h2>
+                    <p class="forgot-description">Enter your phone number to receive OTP for password reset</p>
+                    <form id="forgotPhoneForm">
+                        <div class="form-group">
+                            <input type="tel" id="forgotPhone" placeholder="Phone Number" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Send OTP</button>
+                    </form>
+                    <div class="back-to-login">
+                        <a href="#" onclick="switchTab('login')">Back to Login</a>
+                    </div>
+                    <div id="forgotPhoneMessage" class="message"></div>
+                </div>
+
+                <!-- Step 2: Verify OTP -->
+                <div class="forgot-step" id="forgot-step-otp">
+                    <h2>Verify OTP</h2>
+                    <div class="otp-info">
+                        <p>OTP sent to: <span id="forgotOtpPhone"></span></p>
+                        <div class="timer" id="forgotOtpTimer">02:00</div>
+                    </div>
+                    <form id="forgotOtpForm">
+                        <div class="form-group">
+                            <input type="text" id="forgotOtpInput" placeholder="Enter 4-digit OTP" maxlength="4" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Verify OTP</button>
+                    </form>
+                    <div class="resend-otp">
+                        <button id="forgotResendOtpBtn" disabled>Resend OTP</button>
+                    </div>
+                    <div class="back-to-login">
+                        <a href="#" onclick="switchTab('login')">Back to Login</a>
+                    </div>
+                    <div id="forgotOtpMessage" class="message"></div>
+                </div>
+
+                <!-- Step 3: New Password -->
+                <div class="forgot-step" id="forgot-step-password">
+                    <h2>Set New Password</h2>
+                    <form id="forgotPasswordForm">
+                        <div class="form-group">
+                            <input type="password" id="newPassword" placeholder="New Password" required>
+                            <div class="password-strength">
+                                <div class="strength-bar">
+                                    <div class="strength-fill" id="forgotStrengthFill"></div>
+                                </div>
+                                <span class="strength-text" id="forgotStrengthText">Weak</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="confirmNewPassword" placeholder="Confirm New Password" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Reset Password</button>
+                    </form>
+                    <div class="back-to-login">
+                        <a href="#" onclick="switchTab('login')">Back to Login</a>
+                    </div>
+                    <div id="forgotPasswordMessage" class="message"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            document.querySelector(`[data-tab="${tab}"]`).classList.add('active');
+            document.getElementById(`${tab}-content`).classList.add('active');
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

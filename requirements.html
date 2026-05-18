@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Your Requirements</title>
+    <link rel="stylesheet" href="requir.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Post Your Furniture Requirements</h1>
+        <button onclick="window.location.href='index.html'" class="back-button">Back to Home</button>
+        
+        <!-- Requirement Form -->
+        <form id="requirement-form">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="tel" id="phone" placeholder="Phone Number" required>
+            <input type="text" id="requirement-name" placeholder="Furniture Type" required>
+            <textarea id="requirement-details" placeholder="Describe your requirement" required></textarea>
+            <input type="number" id="quantity" placeholder="Quantity" required>
+            <input type="date" id="delivery-date" placeholder="Preferred Delivery Date" required>
+            <input type="file" id="requirement-image" accept="image/*">
+            <label>
+                <input type="checkbox" id="urgent"> Mark as Urgent
+            </label>
+            <button type="submit">Post Requirement</button>
+        </form>
+
+        <!-- Search & Sort Options -->
+        <div class="filter-options">
+            <input type="text" id="search-bar" placeholder="Search requirements...">
+            <select id="sort-options">
+                <option value="latest">Latest</option>
+                <option value="oldest">Oldest</option>
+                <option value="quantity">Quantity</option>
+            </select>
+        </div>
+
+        <!-- Listed Requirements -->
+        <div id="requirement-list"></div>
+    </div>
+
+    <!-- Requirement Details Modal -->
+    <div id="requirement-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div id="requirement-details-content"></div>
+        </div>
+    </div>
+    
+    <script src="requirements.js"></script>
+</body>
+</html>

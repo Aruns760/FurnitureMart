@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Product - FurnitureMart</title>
+    <link rel="stylesheet" href="buy.css">
+</head>
+<body onload="loadProductDetails()">
+    <header>
+        <a href="index.html">← Back to Home</a>
+        <h1>Buy Product</h1>
+    </header>
+
+    <div class="buy-container">
+        <div class="product-info">
+            <img id="product-image" src="" alt="Product Image">
+            <h2 id="product-name"></h2>
+            <p class="price">Price: <span id="product-price"></span></p>
+            <p><strong>Description:</strong> <span id="product-description"></span></p>
+        </div>
+
+        <div class="buy-form">
+            <h2>Enter Your Details</h2>
+            <form id="buy-form">
+                <input type="text" id="name" placeholder="Full Name" required>
+                <input type="text" id="address" placeholder="Shipping Address" required>
+                <input type="text" id="phone" placeholder="Phone Number" required>
+                <button type="button" onclick="validateForm()">Confirm Purchase</button>
+            </form>
+            
+            <script>
+                function validateForm() {
+                    // Get form inputs
+                    var name = document.getElementById("name").value.trim();
+                    var address = document.getElementById("address").value.trim();
+                    var phone = document.getElementById("phone").value.trim();
+            
+                    // Check if any field is empty
+                    if (name === "" || address === "" || phone === "") {
+                        alert("Please fill in all required fields.");
+                        return;
+                    }
+            
+                    // Redirect to cart.html if validation passes
+                    window.location.href = 'checkout.html';
+                }
+            </script>
+        </div>
+    </div>
+    
+    <script src="buy.js"></script>
+</body>
+</html>

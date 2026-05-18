@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FurnitureMart - Home</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <nav class="navbar">
+            <!-- Logo -->
+            <div class="logo">
+                <a href="index.html">FurnitureMart</a>
+            </div>
+    
+            <!-- Search Bar -->
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search for Products, Brands and More">
+                <button type="submit"><img src="indeximg/search.png" alt="Search"></button>
+            </div>
+    
+            <!-- Navigation Icons -->
+            <div class="nav-icons">
+                <a href="login.html" class="nav-item">
+                    <img src="images/login logo.png" alt="Login"> Login
+                </a>   
+                <a href="cart.html" class="nav-item">
+                    
+                    <img src="images/cart logo.jpg" alt="Cart"> Cart<span id="cart-count">0</span>
+                </a>
+                <a href="sales.html" class="nav-item">
+                    <img src="images/seller logo.png" alt="Seller"> Become a Seller
+                </a>
+                <a href="#" class="nav-item more-options">
+                    <img src="icons/more.svg" alt="More">
+                </a>
+            </div>
+        </nav>
+    </header>
+    
+    <script>
+    // Check if user is logged in
+    let storedUser = JSON.parse(localStorage.getItem("user"));
+
+    if (!storedUser) {
+        // If user skips login, show "Guest"
+        document.getElementById("user-menu").innerHTML = `
+            Welcome, Guest | <a href="login.html">Login</a>
+        `;
+    } else {
+        // Show username and logout button
+        document.getElementById("user-menu").innerHTML = `
+            Welcome, ${storedUser.name} | 
+            <a href="#" onclick="logout()">Logout</a>
+        `;
+    }
+
+    // Logout function
+    function logout() {
+        localStorage.removeItem("user"); // clear stored user
+        window.location.href = "login.html"; // redirect to login page
+    }
+
+<!-- Example container for user menu -->
+<div id="user-menu"></div>
+
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem("user");
+            alert("Logged out successfully!");
+            window.location.href = "login.html";
+        }
+    </script>
+    
+<!-- Hero Slider -->
+ <center><section class="hero-slider">
+    <div class="slider-container">
+        <div class="slide fade">
+            <img src="indeximg/s1.jpg" alt="Slide 1">
+        </div>
+        <div class="slide fade">
+            <img src="indeximg/s2.jpg" alt="Slide 2">
+        </div>
+        <div class="slide fade">
+            <img src="indeximg/s3.jpg" alt="Slide 3">
+        </div>
+        <div class="slide fade">
+            <img src="indeximg/s4.jpg" alt="Slide 3">
+        </div>
+
+        <!-- Navigation Arrows -->
+        <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+        <a class="next" onclick="changeSlide(1)">&#10095;</a>
+    </div>
+
+    <!-- Dots -->
+   <div class="dots">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+    </div>
+</section></center>
+
+    
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let userMenu = document.getElementById("user-menu");
+    
+            // Check if user is logged in
+            let storedUser = JSON.parse(localStorage.getItem("user"));
+    
+            if (!storedUser) {
+                // If user skips login, show "Guest"
+                userMenu.innerHTML = `
+                    Welcome, Guest | 
+                    <a href="login.html">Login</a>
+                `;
+            } else {
+                // Show username and logout button
+                userMenu.innerHTML = `
+                    Welcome, ${storedUser.name} | 
+                    <a href="#" onclick="logout()">Logout</a>
+                `;
+            }
+        });
+    
+        // Logout function
+        function logout() {
+            localStorage.removeItem("user");
+            alert("Logged out successfully!");
+            window.location.href = "login.html";
+        }
+    </script>
+    
+
+    <!-- Featured Products with Vertical Scroll per Category -->
+            <section id="featured">
+                <h2>Featured Products</h2>
+                <div class="featured-container">
+                    <!-- Row 1: Luxury Sofa and Wooden Dining Table -->
+                    <div class="product-row">
+                        <div class="product" onclick="viewProduct('Luxury Sofa', 1990.99, 'images/luxury sofa.jpg', 'A stylish and comfortable sofa.')">
+                            <img src="images/luxury sofa.jpg" alt="Sofa">
+                            <h3>Luxury Sofa</h3>
+                            <p>₹1990.99</p>
+                            <button onclick="event.stopPropagation(); addToCart('Luxury Sofa', 1990.99)">Add to Cart</button>
+                            <a href="buy.html?name=Luxury Sofa&price=199.99&image=images/luxury sofa.jpg" class="buy-btn">Buy</a>
+                        </div>
+                        <div class="product" onclick="viewProduct('Wooden Dining Table', 2299.99, 'images/Dinning table (1).jpg', 'A high-quality wooden dining table.')">
+                            <img src="images/Dinning table (1).jpg" alt="Table">
+                            <h3>Wooden Dining Table</h3>
+                            <p>₹2299.99</p>
+                            <button onclick="event.stopPropagation(); addToCart('Wooden Dining Table', 2299.99)">Add to Cart</button>
+                            <a href="buy.html?name=Wooden Dining Table&price=299.99&image=images/Dinning table (1).jpg" class="buy-btn">Buy</a>
+                        </div>
+                    </div>
+                    <!-- Row 2: King Size Bed -->
+                    <div class="product-row">
+                        <div class="product" onclick="viewProduct('King Size Bed', 61399.99, 'images/king size bed.jpg', 'A spacious king-size bed for relaxation.')">
+                            <img src="images/king size bed.jpg" alt="Bed">
+                            <h3>King Size Bed</h3>
+                            <p>₹61399.99</p>
+                            <button onclick="event.stopPropagation(); addToCart('King Size Bed', 61399.99)">Add to Cart</button>
+                            <a href="buy.html?name=King Size Bed&price=399.99&image=images/king size bed.jpg" class="buy-btn">Buy</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    <section id="featured">
+        <h2>Trending Furniture & Interior Items</h2>    <!-- Categories Section -->
+    <section id="categories">
+        <center><h2>Shop by Category</h2></center>
+        <div class="category-list">
+            <div class="category1" onclick="filterCategory('Sofas')">Sofas</div>
+            <div class="category2" onclick="filterCategory('Tables')">Tables</div>
+            <div class="category3" onclick="filterCategory('Beds')">Beds</div>
+            <div class="category4" onclick="filterCategory('Chairs')">Chairs</div>
+            <div class="category5" onclick="filterCategory('Wardrobes')">Wardrobes</div>
+        </div>
+
+
+        <style>
+            .category-list {
+                display: flex;
+                flex-direction: row; /* Ensures horizontal layout */
+                justify-content: space-around; /* Evenly spaces out the categories */
+                width: 100%;
+            }
+            .category1, .category2, .category3, .category4,.category5 {
+                padding: 10px;
+                margin: 5px;
+                color: white;
+                text-align: center;
+                border-radius: 5px;
+                cursor: pointer;
+                flex: 1; /* Ensures each category takes up equal space */
+            }
+            .category1 { background-color: #D2691E; } /* Deep orange for Sofas */
+            .category2 { background-color: #D2B48C; } /* Light brown for Tables */
+            .category3 { background-color: #87CEEB; } /* Soft blue for Beds */
+            .category4 { background-color: #008080; }
+            .category5 { background-color: #05ebeb; } /* Teal for Chairs */
+        </style>    
+    </section>
+
+        <div class="horizontal-scroll">
+            <div class="category-section" id="sofa-section">
+                <h3>Sofas</h3>
+                <div class="product-list vertical-scroll" id="sofa-list"></div>
+                <button class="view-more" onclick="viewCategory('Sofas')">View More</button>
+            </div>
+            <div class="category-section" id="table-section">
+                <h3>Tables</h3>
+                <div class="product-list vertical-scroll" id="table-list"></div>
+                <button class="view-more" onclick="viewCategory('Tables')">View More</button>
+            </div>
+            <div class="category-section" id="bed-section">
+                <h3>Beds</h3>
+                <div class="product-list vertical-scroll" id="bed-list"></div>
+                <button class="view-more" onclick="viewCategory('Beds')">View More</button>
+            </div>
+            <div class="category-section" id="chair-section">
+                <h3>Chairs</h3>
+                <div class="product-list vertical-scroll" id="chair-list"></div>
+                <button class="view-more" onclick="viewCategory('Chairs')">View More</button>
+            </div>
+            <div class="category-section" id="wardrobe-section">
+    <h3>Wardrobes</h3>
+    <div class="product-list vertical-scroll" id="wardrobe-list"></div>
+    <button class="view-more" onclick="viewCategory('Wardrobes')">View More</button>
+</div>
+        </div>
+
+    </section>
+
+ <center>  <div class="product7">
+        <img src="brand img/399209d1-ba07-4f05-a630-d2620da83cd5.jpg" alt="Luxury Sofa">
+        <div class="product-info">
+            <h3>Luxury Sofa</h3>
+            <p class="price">₹ 10199.99</p>
+            <div class="rating">⭐ 4.5</div>
+            <button onclick="addToCart('Luxury Sofa', 10199.99, 'brand img/399209d1-ba07-4f05-a630-d2620da83cd5.jpg')">Add to Cart</button>
+            <button class="wishlist" onclick="addToWishlist('Luxury Sofa', 'brand img/399209d1-ba07-4f05-a630-d2620da83cd5.jpg')">❤️</button>
+            <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+            <a href="product.html?name=Luxury Sofa&price=10199.99&image=brand img/399209d1-ba07-4f05-a630-d2620da83cd5.jpg" class="view-details">View Details</a>
+        </div>
+    </div> </center>
+    
+<!-- Selection Page -->
+<section id="selection-page">
+    <h2>Select Your Preference</h2>
+    <div class="horizontal-selection">
+        <div class="selection-box purchase" onclick="navigateTo('purchase.html')">
+            <h3>Purchase</h3>
+            <p>Buy high-quality furniture for your home & office.</p>
+        </div>
+        <div class="selection-box sales" onclick="navigateTo('sales.html')">
+            <h3>Sales</h3>
+            <p>Sell your furniture quickly and easily.</p>
+        </div>
+        <div class="selection-box requirements" onclick="navigateTo('requirements.html')">
+            <h3>Requirements</h3>
+            <p>Post your requirements and get furniture suggestions.</p>
+        </div>
+        <div class="selection-box customization" onclick="navigateTo('customization.html')">
+            <h3>Customization</h3>
+            <p>Design furniture to your specifications.</p>
+        </div>
+    </div>
+</section>
+<link rel="stylesheet" href="footer.css">
+
+<script src="footer.js"></script>
+ <!-- Footer -->
+    <footer>
+        <div class="footer-container" style="padding: 20px 0;">
+            <div class="footer-section" style="margin-bottom: 10px;">
+                <h3>About Us</h3>
+                <p>FurnitureMart is your one-stop shop for premium furniture at affordable prices.</p>
+            </div>
+            <div class="footer-section" style="margin-bottom: 10px;">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#featured">Featured</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section" style="margin-bottom: 10px;">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><img src="icons/facebook.svg" alt="Facebook"></a>
+                    <a href="#"><img src="icons/twitter.svg" alt="Twitter"></a>
+                    <a href="#"><img src="icons/instagram.svg" alt="Instagram"></a>
+                </div>
+            </div>
+            <div class="footer-section newsletter" style="margin-bottom: 10px;">
+                <h3>Newsletter</h3>
+                <p>Subscribe to get the latest updates and offers.</p>
+                <form>
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom" style="padding: 10px 0;">
+            <p>&copy; 2025 FurnitureMart. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+
+</footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

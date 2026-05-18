@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Purchase Furniture</title>
+  <link rel="stylesheet" href="purchase.css">
+</head>
+<body>
+  <header>
+    <h1>Purchase Furniture</h1>
+  </header>
+
+  <!-- Filter Options -->
+  <section class="filters">
+    <select id="category-filter" onchange="filterProducts()">
+      <option value="all">All Categories</option>
+      <option value="sofa">Sofas</option>
+      <option value="table">Tables</option>
+      <option value="bed">Beds</option>
+      <option value="chair">Chairs</option>
+      <option value="door">Doors</option>
+    </select>
+    <input type="number" id="price-filter" placeholder="Max Price" oninput="filterProducts()">
+  </section>
+
+  <!-- Product Listings -->
+  <section id="purchase-list" class="product-container">
+    <!-- Product cards are dynamically loaded here -->
+  </section>
+
+  <footer>
+    <button onclick="window.location.href='index.html'">Back to Home</button>
+  </footer>
+
+  <script src="purchase.js"></script>
+</body>
+</html>

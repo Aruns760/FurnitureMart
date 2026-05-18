@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Products - FurnitureMart</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    
+    <header>
+        <h1>Manage Products</h1>
+        <button class="logout" onclick="logout()">Logout</button>
+    </header>
+
+    <div class="container">
+        <div class="action-buttons">
+            <button class="back-btn" onclick="goBack()">Back to Dashboard</button>
+            <button class="action-btn" onclick="addProduct()">Add Product</button>
+        </div>
+
+        <div class="table-container">
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Category</th>
+                        <th>Stock</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="product-list">
+                    <!-- Products will be populated dynamically here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const token = localStorage.getItem('token');
+
+        function loadProducts() {
+            fetch('http://localhost:3000/api/products', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            })
+            .then(response => response.json())
+            .then(data => {
+                const productList = document.getElementById('product-list');
+                productList.innerHTML = '';
+                data.forEach(product => {
+                    const productRow = document.createElement('tr');
+                    productRow.innerHTML = `
+                        <td>${product._id}</td>
+                        <td>${product.name}</td>
+                        <td>${product.description}</td>
+                        <td>${product.price}</td>
+                        <td>${product.category}</td>
+                        <td>${product.stock}</td>
+                        <td>
+                            <button class="action-btn" onclick="editProduct(${product._id})">Edit</button>
+                            <button class="action-btn" onclick="deleteProduct(${product._id})">Delete</button>
+                        </td>
+                    `;
+                    productList.appendChild(productRow);
+                });
+            })
+            .catch(error => console.error('Error loading products:', error));
+        }
+
+        function goBack() {
+            window.location.href = 'admin-dashboard.html';
+        }
+
+        function addProduct() {
+            window.location.href = 'add-product.html';
+        }
+
+        function editProduct(productId) {
+            window.location.href = `edit-product.html?id=${productId}`;
+        }
+
+        function deleteProduct(productId) {
+            if (confirm('Are you sure you want to delete this product?')) {
+                fetch(`http://localhost:3000/api/products/${productId}`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Bearer ${token}` }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert('Product deleted successfully');
+                    loadProducts(); // Refresh the list
+                })
+                .catch(error => console.error('Error deleting product:', error));
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('token');
+            window.location.href = 'admin.html';
+        }
+
+        window.onload = loadProducts;
+    </script>
+</body>
+</html>

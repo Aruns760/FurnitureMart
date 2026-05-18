@@ -1,0 +1,36 @@
+/* src/pages/EntryPage.css */
+.entry-page {
+    background: url('/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+  }
+  
+  .buttons-container {
+    position: absolute;
+    width: 100%;
+    bottom: 50px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 50px;
+  }
+  
+  .admin-btn,
+  .customer-btn {
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: rgba(0, 123, 255, 0.8);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    /* You can add additional styles to enhance the button look */
+  }
+  
+  .admin-btn:hover,
+  .customer-btn:hover {
+    transform: scale(1.1);
+  }
+  

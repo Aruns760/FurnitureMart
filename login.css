@@ -1,0 +1,169 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('images/login user.jpg') no-repeat center center fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;   
+    background-size: cover;
+    font-family: 'Arial', sans-serif;
+}
+
+  .container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+/* Authentication Container */
+.auth-container {
+    width: 100%;
+    max-width: 450px;
+    padding: 30px;
+    background: white;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Logo */
+.logo img {
+    width: 150px;
+    margin-bottom: 15px;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.tab-button {
+    padding: 10px 20px;
+    border: none;
+    background: #ddd;
+    cursor: pointer;
+    font-size: 16px;
+    width: 50%;
+}
+
+.tab-button.active {
+    background: #ff6600;
+    color: white;
+}
+
+/* Authentication Pages */
+.auth-page {
+    display: none;
+}
+
+.auth-page h2 {
+    margin-bottom: 15px;
+}
+
+.auth-page input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.auth-page button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.auth-page button:hover {
+    background-color: #e65c00;
+}
+
+/* Social Login Buttons */
+.social-login {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.google-login {
+    background-color: #db4437;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.facebook-login {
+    background-color: #3b5998;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+.hidden {
+    display: none;
+}
+/* Back Button Container */
+.back-button-container {
+    position: absolute; /* Position the button absolutely */
+    top: 20px; /* Distance from the top */
+    right: 20px; /* Distance from the right */
+    z-index: 10; /* Ensure it stays on top of other elements */
+}
+
+/* Back Button Styles */
+.back-button {
+    background-color: #007bff; /* Blue background */
+    color: #fff; /* White text */
+    border: none; /* Remove default border */
+    padding: 10px 20px; /* Add padding */
+    font-size: 1rem; /* Font size */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center the arrow and text vertically */
+    gap: 8px; /* Space between arrow and text */
+}
+
+.back-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly larger shadow on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+.back-button:active {
+    background-color: #004080; /* Even darker blue when clicked */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reset shadow when clicked */
+    transform: translateY(0); /* Reset lift effect when clicked */
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    .back-button-container {
+        top: 10px; /* Smaller distance from the top on mobile */
+        right: 10px; /* Smaller distance from the right on mobile */
+    }
+
+    .back-button {
+        font-size: 0.9rem; /* Smaller font size for mobile */
+        padding: 8px 16px; /* Smaller padding for mobile */
+    }
+}

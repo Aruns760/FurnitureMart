@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | FurnitureMart</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Welcome, <span id="user-name">User</span></h1>
+        <p>Email: <span id="user-email"></span></p>
+        <p>Phone: <span id="user-phone"></span></p>
+        
+        <!-- Edit Profile Button -->
+        <button onclick="showEditProfile()">Edit Profile</button>
+        
+        <!-- Profile Edit Form (Hidden by Default) -->
+        <div id="edit-profile-form" class="hidden">
+            <h2>Edit Profile</h2>
+            <input type="text" id="edit-name" placeholder="Full Name">
+            <input type="email" id="edit-email" placeholder="Email">
+            <input type="text" id="edit-phone" placeholder="Phone Number">
+            <button onclick="saveProfile()">Save Changes</button>
+            <button class="cancel-btn" onclick="hideEditProfile()">Cancel</button>
+        </div>
+
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

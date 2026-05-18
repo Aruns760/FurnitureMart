@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product - FurnitureMart</title>
+    <link rel="stylesheet" href="add-product.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Add Product</h1>
+        <a href="manage-products.html" class="back-btn">Back to Manage Products</a>
+    </header>
+
+    <!-- Form Container -->
+    <div class="form-container">
+        <form action="/api/products" method="POST">
+            <div class="form-group">
+                <label for="product-name">Product Name</label>
+                <input type="text" id="product-name" name="product-name" required placeholder="Enter product name">
+            </div>
+
+            <div class="form-group">
+                <label for="product-description">Product Description</label>
+                <textarea id="product-description" name="product-description" required placeholder="Enter product description"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="product-price">Price ($)</label>
+                <input type="number" id="product-price" name="product-price" required placeholder="Enter price" step="0.01">
+            </div>
+
+            <div class="form-group">
+                <label for="product-category">Category</label>
+                <select id="product-category" name="product-category" required>
+                    <option value="furniture">Furniture</option>
+                    <option value="home-decor">Home Decor</option>
+                    <option value="lighting">Lighting</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="product-image">Product Image URL</label>
+                <input type="url" id="product-image" name="product-image" required placeholder="Enter image URL">
+            </div>
+
+            <button type="submit" class="submit-btn">Add Product</button>
+        </form>
+    </div>
+
+    <!-- Footer Section (Optional) -->
+    <footer>
+        <p>&copy; 2025 FurnitureMart. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

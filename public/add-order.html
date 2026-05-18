@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Order - FurnitureMart</title>
+    <link rel="stylesheet" href="add-order.css">
+</head>
+<body>
+
+<header>
+    <h1>Add Order</h1>
+    <a href="admin-dashboard.html" class="back-btn">Back to Dashboard</a>
+</header>
+
+<div class="form-container">
+    <form id="add-order-form">
+        <div class="form-group">
+            <label for="customerSelect">Select Customer:</label>
+            <select id="customerSelect">
+                <option value="">Loading customers...</option>
+            </select>
+            
+        </div>
+
+        <div class="form-group">
+            <label for="product-id">Product ID</label>
+            <input type="text" id="product-id" name="product-id" required>
+        </div>
+
+        <div class="form-group">
+            <label for="quantity">Quantity</label>
+            <input type="number" id="quantity" name="quantity" min="1" required>
+        </div>
+
+        <div class="form-group">
+            <label for="order-status">Order Status</label>
+            <select id="order-status" name="order-status" required>
+                <option value="pending">Pending</option>
+                <option value="completed">Completed</option>
+                <option value="shipped">Shipped</option>
+            </select>
+        </div>
+
+        <button type="submit" class="submit-btn">Add Order</button>
+    </form>
+
+    <div id="message" class="message"></div>
+</div>
+
+<footer>
+    <p>© 2025 FurnitureMart. All rights reserved.</p>
+</footer>
+
+<script>
+    const API_URL = 'http://localhost:5000/api';
+    
+    // Fetch customers and populate the dropdown
+    function loadCustomers() {
+        fetch(`${API_URL}/users/customers`) // Fixed template literal
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch customers');
+                }
+                return response.json();
+            })
+            .then(customers => {
+                const customerSelect = document.getElementById('customerSelect');
+                customerSelect.innerHTML = '<option value="">Select a customer</option>';
+                customers.forEach(customer => {
+                    const option = document.createElement('option');
+                    option.value = customer.id;
+                    option.textContent = customer.username || customer.email; 
+                    customerSelect.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading customers:', error);
+                alert('Error loading customers. Please try again.');
+            });
+    }
+    
+    // Handle form submission
+    const orderForm = document.getElementById('add-order-form');
+    orderForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+    
+        const user_id = document.getElementById('customerSelect').value; // Fixed ID
+        const product_id = document.getElementById('product-id').value;
+        const quantity = document.getElementById('quantity').value;
+        const status = document.getElementById('order-status').value;
+    
+        // Validate fields
+        if (!user_id || !product_id || !quantity || !status) {
+            alert("All fields are required: user_id, product_id, quantity, status");
+            return;
+        }
+    
+        fetch(`${API_URL}/orders`, { // Fixed template literal
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ user_id, product_id, quantity, status })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to add order');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.message.includes('successfully')) {
+                alert(data.message);
+                window.location.href = 'manage-orders.html';
+            } else {
+                alert(data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error adding order:', error);
+            alert('Error adding order. Please try again.');
+        });
+    });
+    
+    // Load customers on page load
+    window.onload = loadCustomers;
+    </script>    
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | FurnitureMart</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="back-button-container">
+        <button id="backButton" class="back-button">← Back</button>
+    </div>
+
+    <div class="auth-container">
+        <div class="logo">
+            <img src="images/logo.png" alt="FurnitureMart Logo">
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="showLogin()">Login</button>
+            <button class="tab-button" onclick="showRegister()">Register</button>
+        </div>
+
+        <!-- Login Form -->
+        <div id="login-page" class="auth-page">
+            <h2>Login</h2>
+            <input id="phone" placeholder="Phone"><br>
+            <input id="password" placeholder="Password" type="password"><br>
+            <button onclick="loginUser()">Login</button>
+            
+            <p>Or login with:</p>
+            <div class="social-login">
+                <button class="google-login" onclick="googleLogin()">Google</button>
+                <button class="facebook-login" onclick="facebookLogin()">Facebook</button>
+                <button onclick="loginLater()">Login Later</button>
+            </div>
+            <p><a href="forgot-step1.html" onclick="showForgotPassword()">Forgot Password?</a></p>
+        </div>
+
+        <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let userMenu = document.getElementById("user-menu");
+
+        // Check if user is logged in
+        let storedUser = JSON.parse(localStorage.getItem("user"));
+
+        if (!storedUser) {
+            // If user skips login, show "Guest"
+            userMenu.innerHTML = `
+                Welcome, Guest | 
+                <a href="login.html">Login</a>
+            `;
+        } else {
+            // Show username and logout button
+            userMenu.innerHTML = `
+                Welcome, ${storedUser.name} | 
+                <a href="#" onclick="logout()">Logout</a>
+            `;
+        }
+    });
+
+    // Logout function
+    function logout() {
+        localStorage.removeItem("user");
+        alert("Logged out successfully!");
+        window.location.href = "login.html";
+    }
+</script>
+
+
+        <!-- Register Form -->
+        <div id="register-page" class="auth-page hidden">
+            <h2>Register</h2>
+            <input type="text" id="register-name" placeholder="Full Name">
+            <input type="email" id="register-email" placeholder="Email">
+            <input type="text" id="register-phone" placeholder="Phone Number">
+            <input type="password" id="register-password" placeholder="Password">
+            <button onclick="registerUser()">Register</button>
+            <p>Or sign up with:</p>
+            <div class="social-login">
+                <button class="google-login" onclick="googleLogin()">Google</button>
+                <button class="facebook-login" onclick="facebookLogin()">Facebook</button>
+            </div>
+        </div>
+
+        <!-- Forgot Password Form -->
+        <div id="forgot-password-page" class="auth-page hidden">
+            <h2><a href="forgot-step1.html"></a>Forgot Password</h2>
+            <input type="email" id="forgot-email" placeholder="Enter your email">
+            <button onclick="resetPassword()">Reset Password</button>
+        </div>
+    </div>
+    <script src="login.js"></script>
+</body>
+</html>

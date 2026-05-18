@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - FurnitureMart</title>
+    <link rel="stylesheet" href="cart.css">
+</head>
+<body onload="loadCartItems()">
+    <header>
+        <a href="index.html">← Continue Shopping</a>
+        <h1>Your Cart</h1>
+    </header>
+
+    <div class="cart-container">
+        <div id="cart-items"></div>
+
+        <div class="cart-summary">
+            <h3>Total: ₹<span id="cart-total">0.00</span></h3>
+            <a href="checkout.html" class="checkout-btn">Proceed to Checkout</a>
+        </div>
+    </div>
+
+    <script src="cart.js"></script>
+</body>
+</html>

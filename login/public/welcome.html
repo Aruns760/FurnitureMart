@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome | Auth System</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .welcome-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .welcome-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .welcome-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .welcome-name {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .welcome-message {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .user-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .info-item {
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .info-value {
+            color: #666;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: center;
+        }
+
+        .btn-secondary {
+            padding: 12px 25px;
+            background: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        .profile-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <div class="welcome-card">
+            <div class="profile-badge" id="profileInitial">U</div>
+            <h1 class="welcome-name" id="welcomeName">Welcome!</h1>
+            <p class="welcome-message">You have successfully logged in to your account</p>
+            
+            <div class="user-info">
+                <div class="info-item">
+                    <span class="info-label">Profile Name:</span>
+                    <span class="info-value" id="profileName">-</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Phone Number:</span>
+                    <span class="info-value" id="userPhone">-</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Account Created:</span>
+                    <span class="info-value" id="accountCreated">-</span>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <a href="/" class="btn-secondary">Back to Login</a>
+                <button onclick="logout()" class="btn-secondary">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // Get user data from localStorage
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    
+    if (!currentUser) {
+        // Redirect to login if no user data
+        window.location.href = 'http://localhost:3001'; // ← Update this
+    } else {
+        // Display user information
+        document.getElementById('welcomeName').textContent = `Welcome, ${currentUser.name}!`;
+        document.getElementById('profileName').textContent = currentUser.profileName || currentUser.name;
+        document.getElementById('userPhone').textContent = currentUser.phone;
+        document.getElementById('accountCreated').textContent = new Date().toLocaleDateString();
+        
+        // Set profile initial
+        const initial = currentUser.name.charAt(0).toUpperCase();
+        document.getElementById('profileInitial').textContent = initial;
+    }
+
+    function logout() {
+        // Clear user data and redirect to login
+        localStorage.removeItem('currentUser');
+        window.location.href = 'http://localhost:3001'; // ← Update this
+    }
+
+    // Auto-logout after 1 hour (optional)
+    setTimeout(() => {
+        alert('Session expired. Please login again.');
+        logout();
+    }, 60 * 60 * 1000); // 1 hour
+</script>
+</body>
+</html>

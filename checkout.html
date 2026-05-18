@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - FurnitureMart</title>
+    <link rel="stylesheet" href="checkout.css">
+</head>
+<body onload="loadCheckout()">
+
+    <header>
+        <a href="cart.html">← Back to Cart</a>
+        <h1>Checkout</h1>
+    </header>
+
+    <div class="checkout-container">
+        <!-- Order Summary -->
+        <section class="order-summary">
+            <h2>Order Summary</h2>
+            <div id="checkout-items"></div>
+            <h3>Total: ₹<span id="checkout-total">0.00</span></h3>
+        </section>
+
+        <!-- Customer Details Form -->
+        <section class="customer-details">
+            <h2>Shipping Information</h2>
+            <form id="checkout-form">
+                <input type="text" id="name" placeholder="Full Name" required>
+                <input type="text" id="address" placeholder="Shipping Address" required>
+                <input type="text" id="phone" placeholder="Phone Number" required>
+
+                <h3>Payment Method</h3>
+                <select id="payment-method">
+                    <option value="card">Credit/Debit Card</option>
+                    <option value="cod">Cash on Delivery</option>
+                    <option value="upi">UPI</option>
+                </select>
+
+                <button type="submit">Place Order</button>
+            </form>
+        </section>
+    </div>
+
+    <script src="checkout.js"></script>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - FurnitureMart</title>
+    <link rel="stylesheet" href="checkout.css">
+</head>
+<body>
+    <h2>Checkout Page</h2>
+    <div id="checkout-container"></div>
+    <button onclick="placeOrder()">Place Order</button>
+
+    <script src="checkout.js"></script>
+</body>
+</html>
